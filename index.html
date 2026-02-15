@@ -63,8 +63,8 @@
 
     <!-- Hero Section with Depth -->
     <section class="relative h-screen flex items-center justify-center">
-        <video autoplay muted loop playsinline class="hero-video" id="heroVideo">
-            <source src="assets/hero-bg.mp4#t=3" type="video/mp4">
+        <video autoplay muted loop playsinline class="hero-video">
+            <source src="assets/hero-bg.mp4" type="video/mp4">
         </video>
         <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-dark z-10"></div>
         
@@ -236,13 +236,6 @@
     </footer>
 
     <script>
-        // Start video at 3 seconds
-        const video = document.getElementById('heroVideo');
-        if (video) {
-            video.addEventListener('loadedmetadata', function() { this.currentTime = 3; });
-            video.addEventListener('timeupdate', function() { if (this.currentTime < 3) { this.currentTime = 3; } });
-        }
-
         // Reveal on scroll
         const reveal = () => {
             const reveals = document.querySelectorAll('.stagger-item');
