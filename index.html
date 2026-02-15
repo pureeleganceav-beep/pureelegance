@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pure Elegance | Texas Premier AV Production</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Tenor+Sans&family=Inter:wght@100;300;400;600&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        gold: '#C5A059',
+                        dark: '#030303',
+                        'accent': '#1A1A1A',
+                    },
+                    fontFamily: {
+                        header: ['Syncopate', 'sans-serif'],
+                        serif: ['Tenor Sans', 'serif'],
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #030303; color: #ffffff; }
+        .hero-video {
+            position: absolute; top: 50%; left: 50%;
+            min-width: 100%; min-height: 100%;
+            width: auto; height: auto; z-index: 0;
+            transform: translate(-50%, -50%); object-fit: cover;
+        }
+        .text-outline {
+            -webkit-text-stroke: 1px rgba(255,255,255,0.1);
+            color: transparent;
+        }
+        .glass-panel {
+            background: rgba(10, 10, 10, 0.7);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .stagger-item { opacity: 0; transform: translateY(40px); transition: all 1s cubic-bezier(0.2, 0.8, 0.2, 1); }
+        .stagger-item.active { opacity: 1; transform: translateY(0); }
+        .parallax-text { position: absolute; font-size: 15vw; font-family: 'Syncopate'; font-weight: 700; z-index: -1; opacity: 0.03; white-space: nowrap; pointer-events: none; }
+    </style>
+</head>
+<body class="font-sans overflow-x-hidden selection:bg-gold selection:text-black">
+
+    <!-- Premium Navigation -->
+    <nav class="fixed w-full z-50 flex justify-between items-center px-12 py-8 transition-all duration-500" id="navbar">
+        <div class="w-56">
+            <img src="assets/logo.png" alt="Pure Elegance" class="w-full brightness-125">
+        </div>
+        <div class="hidden lg:flex items-center space-x-16 text-[10px] font-header tracking-[0.4em] uppercase">
+            <a href="#about" class="hover:text-gold transition-colors">Vision</a>
+            <a href="#services" class="hover:text-gold transition-colors">Aesthetics</a>
+            <a href="#tiers" class="hover:text-gold transition-colors">Production</a>
+            <a href="#contact" class="bg-white text-black px-6 py-3 hover:bg-gold transition-all duration-300">Contact</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section with Depth -->
+    <section class="relative h-screen flex items-center justify-center">
+        <video autoplay muted loop playsinline class="hero-video" id="heroVideo">
+            <source src="assets/hero-bg.mp4#t=3" type="video/mp4">
+        </video>
+        <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-dark z-10"></div>
+        
+        <div class="relative z-20 text-center px-4 mt-20">
+            <span class="block font-header text-[10px] tracking-[0.6em] uppercase text-gold mb-6 stagger-item">The Texas Standard in Luxury AV</span>
+            <h1 class="font-header font-bold text-5xl md:text-8xl mb-12 tracking-tighter stagger-item delay-100">
+                ATMOSPHERIC<br>ENGINEERING
+            </h1>
+            <div class="flex flex-col md:flex-row items-center justify-center gap-8 stagger-item delay-300">
+                <a href="#tiers" class="group relative px-12 py-5 overflow-hidden">
+                    <div class="absolute inset-0 bg-gold transition-transform duration-500 group-hover:scale-x-110"></div>
+                    <span class="relative z-10 text-black font-header text-[10px] tracking-widest font-bold">View Tiers</span>
+                </a>
+                <a href="catalog/catalog.pdf" target="_blank" class="font-header text-[10px] tracking-widest border-b border-white/20 pb-2 hover:border-gold transition-colors">Download Catalog</a>
+            </div>
+        </div>
+
+        <div class="absolute bottom-20 left-1/2 -translate-x-1/2 z-20 animate-bounce stagger-item delay-700">
+            <div class="w-[1px] h-16 bg-gradient-to-b from-gold to-transparent"></div>
+        </div>
+    </section>
+
+    <!-- Vision Section -->
+    <section id="about" class="relative py-40 overflow-hidden">
+        <div class="parallax-text top-1/4 -left-20">EXCELLENCE</div>
+        <div class="container mx-auto px-12">
+            <div class="grid lg:grid-cols-2 gap-24 items-center">
+                <div class="relative stagger-item">
+                    <div class="absolute -top-10 -left-10 w-40 h-40 border-l border-t border-gold/30"></div>
+                    <img src="assets/feature-1.jpg" alt="Production Detail" class="w-full grayscale hover:grayscale-0 transition-all duration-1000">
+                </div>
+                <div class="stagger-item delay-300">
+                    <h2 class="font-header text-xs tracking-[0.5em] text-gold mb-8 uppercase">The Philosophy</h2>
+                    <p class="font-serif text-4xl md:text-6xl leading-tight mb-12 italic">Precision in every <span class="text-outline">pixel</span> and frequency.</p>
+                    <p class="text-white/50 font-light text-lg leading-relaxed max-w-xl">
+                        Imperial standards, delivered locally. Pure Elegance isn't a vendor; we are your technical partner. We translate the grandeur of high-end wedding visions into flawless physical reality using concert-grade hardware.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-40 bg-accent">
+        <div class="container mx-auto px-12">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-24 stagger-item">
+                <h2 class="font-header text-4xl md:text-6xl tracking-tighter">TECHNICAL<br>CRAFTSMANSHIP</h2>
+                <div class="md:w-1/3 mt-8 md:mt-0">
+                    <p class="text-white/40 text-sm font-light uppercase tracking-widest">Bridging the gap between traditional aesthetics and modern engineering.</p>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-1">
+                <div class="group relative aspect-[4/5] overflow-hidden glass-panel p-12 flex flex-col justify-end stagger-item">
+                    <div class="absolute inset-0 bg-gold/0 group-hover:bg-gold/5 transition-colors duration-700"></div>
+                    <span class="text-gold font-header text-[10px] mb-4">01. VISUAL</span>
+                    <h3 class="font-header text-xl tracking-widest mb-6">LED ARCHITECTURE</h3>
+                    <p class="text-xs text-white/40 opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-4 group-hover:translate-y-0">Ultra-fine pixel pitch modules engineered for 4K clarity and high-nit daylight performance.</p>
+                </div>
+                <div class="group relative aspect-[4/5] overflow-hidden glass-panel p-12 flex flex-col justify-end stagger-item delay-200">
+                    <div class="absolute inset-0 bg-gold/0 group-hover:bg-gold/5 transition-colors duration-700"></div>
+                    <span class="text-gold font-header text-[10px] mb-4">02. SONIC</span>
+                    <h3 class="font-header text-xl tracking-widest mb-6">ACOUSTIC DESIGN</h3>
+                    <p class="text-xs text-white/40 opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-4 group-hover:translate-y-0">Line-array sound reinforcement calibrated for ballroom acoustics and zero distortion.</p>
+                </div>
+                <div class="group relative aspect-[4/5] overflow-hidden glass-panel p-12 flex flex-col justify-end stagger-item delay-400">
+                    <div class="absolute inset-0 bg-gold/0 group-hover:bg-gold/5 transition-colors duration-700"></div>
+                    <span class="text-gold font-header text-[10px] mb-4">03. LUMEN</span>
+                    <h3 class="font-header text-xl tracking-widest mb-6">INTELLIGENT LIGHT</h3>
+                    <p class="text-xs text-white/40 opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-4 group-hover:translate-y-0">DMX-controlled moving fixtures providing theatrical depth and energetic dancefloor atmosphere.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tiers Section -->
+    <section id="tiers" class="py-40 relative">
+        <div class="parallax-text bottom-1/4 -right-40">PRODUCTION</div>
+        <div class="container mx-auto px-12">
+            <div class="text-center mb-32 stagger-item">
+                <h2 class="font-header text-5xl md:text-8xl tracking-tighter mb-8">PRODUCTION TIERS</h2>
+                <div class="flex items-center justify-center space-x-4">
+                    <div class="h-[1px] w-12 bg-gold/50"></div>
+                    <span class="text-gold font-header text-[10px] tracking-[0.4em]">SCALABLE LUXURY</span>
+                    <div class="h-[1px] w-12 bg-gold/50"></div>
+                </div>
+            </div>
+
+            <div class="grid lg:grid-cols-3 gap-12 max-w-7xl mx-auto">
+                <!-- Tier 1 -->
+                <div class="p-12 border border-white/5 stagger-item">
+                    <h4 class="font-header text-[10px] text-gold mb-12 tracking-widest">THE ELITE SERIES</h4>
+                    <div class="mb-12">
+                        <span class="font-serif text-5xl">$3,500</span>
+                        <span class="text-white/20 font-light block mt-2 text-xs uppercase tracking-widest">— Baseline Investment</span>
+                    </div>
+                    <ul class="space-y-6 text-[10px] font-header tracking-widest text-white/40 uppercase mb-16">
+                        <li>10' x 7' 4K LED Center</li>
+                        <li>High-Fidelity Sound</li>
+                        <li>8 Intelligent Fixtures</li>
+                    </ul>
+                </div>
+
+                <!-- Tier 2 (Featured) -->
+                <div class="p-16 bg-white text-black stagger-item delay-200">
+                    <div class="flex justify-between items-start mb-12">
+                        <h4 class="font-header text-[10px] tracking-widest">THE GRAND SERIES</h4>
+                        <span class="text-[8px] bg-black text-white px-3 py-1 font-bold tracking-widest uppercase">Popular</span>
+                    </div>
+                    <div class="mb-12">
+                        <span class="font-serif text-5xl">$7,500</span>
+                        <span class="text-black/40 font-light block mt-2 text-xs uppercase tracking-widest">— Full Ballroom Rig</span>
+                    </div>
+                    <ul class="space-y-6 text-[10px] font-header tracking-widest uppercase mb-16">
+                        <li class="font-bold">16' x 9' LED Master Wall</li>
+                        <li class="font-bold">Concert Line-Array System</li>
+                        <li class="font-bold">12+ Moving Fixtures</li>
+                        <li class="font-bold">Cold Sparkular Effects</li>
+                    </ul>
+                </div>
+
+                <!-- Tier 3 -->
+                <div class="p-12 border border-white/5 stagger-item delay-400">
+                    <h4 class="font-header text-[10px] text-gold mb-12 tracking-widest">THE ROYAL PRODUCTION</h4>
+                    <div class="mb-12">
+                        <span class="font-serif text-5xl">$15,000</span>
+                        <span class="text-white/20 font-light block mt-2 text-xs uppercase tracking-widest">— Custom Integration</span>
+                    </div>
+                    <ul class="space-y-6 text-[10px] font-header tracking-widest text-white/40 uppercase mb-16">
+                        <li>Immersive Stage Wrap</li>
+                        <li>Live IMAG Cameras</li>
+                        <li>3D Projection Mapping</li>
+                        <li>Full Room Engineering</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black py-32 px-12 border-t border-white/5">
+        <div class="flex flex-col lg:flex-row justify-between items-start">
+            <div class="w-64 mb-16 lg:mb-0">
+                <img src="assets/logo.png" alt="Pure Elegance" class="w-full grayscale opacity-50">
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-24">
+                <div>
+                    <h5 class="font-header text-[10px] text-gold mb-8 tracking-widest uppercase">Regions</h5>
+                    <ul class="text-xs font-light text-white/40 space-y-4">
+                        <li>Austin</li>
+                        <li>Dallas</li>
+                        <li>Houston</li>
+                    </ul>
+                </div>
+                <div>
+                    <h5 class="font-header text-[10px] text-gold mb-8 tracking-widest uppercase">Contact</h5>
+                    <ul class="text-xs font-light text-white/40 space-y-4">
+                        <li>Instagram</li>
+                        <li>Email</li>
+                        <li>Phone</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="mt-32 pt-8 border-t border-white/5 flex justify-between items-center text-[8px] font-header tracking-[0.4em] uppercase text-white/20">
+            <span>&copy; 2026 PURE ELEGANCE PRODUCTION HOUSE</span>
+            <span>AUSTIN TEXAS</span>
+        </div>
+    </footer>
+
+    <script>
+        // Start video at 3 seconds
+        const video = document.getElementById('heroVideo');
+        if (video) {
+            video.addEventListener('loadedmetadata', function() { this.currentTime = 3; });
+            video.addEventListener('timeupdate', function() { if (this.currentTime < 3) { this.currentTime = 3; } });
+        }
+
+        // Reveal on scroll
+        const reveal = () => {
+            const reveals = document.querySelectorAll('.stagger-item');
+            reveals.forEach(el => {
+                const windowHeight = window.innerHeight;
+                const revealTop = el.getBoundingClientRect().top;
+                const revealPoint = 100;
+                if (revealTop < windowHeight - revealPoint) el.classList.add('active');
+            });
+        };
+        window.addEventListener('scroll', reveal);
+        reveal(); // Initial call
+
+        // Navbar effect
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 100) {
+                nav.classList.add('bg-black/90', 'py-4', 'backdrop-blur-md');
+                nav.classList.remove('py-8');
+            } else {
+                nav.classList.remove('bg-black/90', 'py-4', 'backdrop-blur-md');
+                nav.classList.add('py-8');
+            }
+        });
+    </script>
+</body>
+</html>
