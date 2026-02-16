@@ -6,7 +6,8 @@
     <title>Pure Elegance | Luxury LED Wall & AV Rentals Austin, Dallas, Houston, San Antonio</title>
     <meta name="description" content="Pure Elegance provides concert-grade sound, 4K LED video wall rentals, and intelligent lighting for luxury Desi weddings and corporate events in Austin, Dallas, Houston, and San Antonio.">
     <meta name="keywords" content="LED Wall Rental Austin, Wedding AV Dallas, Luxury Event Production Houston, San Antonio Wedding Lighting, Desi Wedding Production Texas, Pure Elegance AV">
-    
+    <link rel="icon" type="image/png" href="assets/logo.png">
+
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://pureelegancelav.com/">
@@ -40,13 +41,7 @@
       "openingHoursSpecification": {
         "@type": "OpeningHoursSpecification",
         "dayOfWeek": [
-          "Monday",
-          "Tuesday",
-          "Wednesday",
-          "Thursday",
-          "Friday",
-          "Saturday",
-          "Sunday"
+          "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"
         ],
         "opens": "00:00",
         "closes": "23:59"
@@ -55,10 +50,7 @@
         "https://www.instagram.com/pureelegancelav"
       ],
       "areaServed": [
-        "Austin, TX",
-        "Dallas, TX",
-        "Houston, TX",
-        "San Antonio, TX"
+        "Austin, TX", "Dallas, TX", "Houston, TX", "San Antonio, TX"
       ]
     }
     </script>
@@ -70,8 +62,11 @@
                 extend: {
                     colors: {
                         gold: '#C5A059',
+                        'gold-light': '#D4B06A',
+                        'gold-dark': '#8E6E36',
                         dark: '#030303',
-                        'accent': '#1A1A1A',
+                        accent: '#1A1A1A',
+                        'accent-light': '#222222',
                     },
                     fontFamily: {
                         header: ['Syncopate', 'sans-serif'],
@@ -87,7 +82,17 @@
         }
     </script>
     <style>
-        body { background-color: #030303; color: #ffffff; cursor: none; }
+        body { background-color: #030303; color: #ffffff; }
+
+        /* Custom cursor — desktop only */
+        @media (pointer: fine) {
+            body { cursor: none; }
+            #cursor, #cursor-dot { display: block; }
+        }
+        @media (pointer: coarse) {
+            #cursor, #cursor-dot { display: none !important; }
+        }
+
         .hero-video {
             position: absolute; top: 50%; left: 50%;
             min-width: 100%; min-height: 100%;
@@ -112,8 +117,8 @@
         }
         .stagger-item { opacity: 0; transform: translateY(50px); transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1); }
         .stagger-item.active { opacity: 1; transform: translateY(0); }
-        .parallax-text { position: absolute; font-size: 18vw; font-family: 'Syncopate'; font-weight: 700; z-index: -1; opacity: 0.02; white-space: nowrap; pointer-events: none; }
-        
+        .parallax-text { position: absolute; font-size: 18vw; font-family: 'Syncopate'; font-weight: 700; z-index: 0; opacity: 0.02; white-space: nowrap; pointer-events: none; }
+
         /* Custom Cursor */
         #cursor {
             width: 40px; height: 40px;
@@ -124,6 +129,7 @@
             z-index: 9999;
             transition: transform 0.1s ease-out, background 0.3s ease;
             transform: translate(-50%, -50%);
+            display: none;
         }
         #cursor-dot {
             width: 4px; height: 4px;
@@ -133,10 +139,11 @@
             pointer-events: none;
             z-index: 9999;
             transform: translate(-50%, -50%);
+            display: none;
         }
 
         .gold-gradient {
-            background: linear-gradient(135deg, #C5A059 0%, #8E6E36 100%);
+            background: linear-gradient(135deg, #D4B06A 0%, #C5A059 50%, #8E6E36 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
@@ -156,6 +163,147 @@
             100% { transform: translateY(0px); }
         }
         .float { animation: float 6s ease-in-out infinite; }
+
+        @keyframes shimmer {
+            0% { background-position: -200% center; }
+            100% { background-position: 200% center; }
+        }
+        .shimmer {
+            background: linear-gradient(90deg, transparent, rgba(197, 160, 89, 0.08), transparent);
+            background-size: 200% 100%;
+            animation: shimmer 8s ease-in-out infinite;
+        }
+
+        @keyframes pulse-gold {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(197, 160, 89, 0.4); }
+            50% { box-shadow: 0 0 20px 4px rgba(197, 160, 89, 0.15); }
+        }
+        .pulse-gold { animation: pulse-gold 3s ease-in-out infinite; }
+
+        /* Stat counter animation */
+        .stat-number {
+            font-variant-numeric: tabular-nums;
+        }
+
+        /* Gallery hover */
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+        }
+        .gallery-item img {
+            transition: transform 1.5s cubic-bezier(0.16, 1, 0.3, 1), filter 1s ease;
+        }
+        .gallery-item:hover img {
+            transform: scale(1.08);
+            filter: brightness(0.6);
+        }
+        .gallery-overlay {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: flex-end;
+            padding: 2rem;
+            opacity: 0;
+            transition: opacity 0.6s ease;
+        }
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        /* Testimonial carousel */
+        .testimonial-slide {
+            opacity: 0;
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.8s ease;
+        }
+        .testimonial-slide.active-testimonial {
+            opacity: 1;
+        }
+
+        /* Mobile menu overlay */
+        .mobile-menu {
+            position: fixed;
+            inset: 0;
+            z-index: 100;
+            background: rgba(3, 3, 3, 0.98);
+            backdrop-filter: blur(40px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transform: translateX(100%);
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .mobile-menu.open {
+            transform: translateX(0);
+        }
+        .mobile-menu a {
+            font-family: 'Syncopate', sans-serif;
+            font-size: 14px;
+            letter-spacing: 0.5em;
+            text-transform: uppercase;
+            padding: 1.5rem 0;
+            color: rgba(255,255,255,0.6);
+            transition: color 0.3s ease;
+        }
+        .mobile-menu a:hover {
+            color: #C5A059;
+        }
+
+        /* Hamburger */
+        .hamburger-line {
+            display: block;
+            width: 28px;
+            height: 1px;
+            background: #fff;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .hamburger.active .hamburger-line:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+        .hamburger.active .hamburger-line:nth-child(2) {
+            opacity: 0;
+        }
+        .hamburger.active .hamburger-line:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        /* Smooth section separator */
+        .section-divider {
+            height: 1px;
+            background: linear-gradient(to right, transparent, rgba(197, 160, 89, 0.2), transparent);
+        }
+
+        /* Tier card CTA button */
+        .tier-cta {
+            display: inline-block;
+            padding: 14px 32px;
+            font-family: 'Syncopate', sans-serif;
+            font-size: 9px;
+            letter-spacing: 0.5em;
+            text-transform: uppercase;
+            border: 1px solid rgba(197, 160, 89, 0.3);
+            transition: all 0.5s ease;
+        }
+        .tier-cta:hover {
+            background: #C5A059;
+            color: #000;
+            border-color: #C5A059;
+        }
+        .tier-cta-featured {
+            border-color: rgba(0,0,0,0.2);
+            color: #000;
+        }
+        .tier-cta-featured:hover {
+            background: #000;
+            color: #fff;
+            border-color: #000;
+        }
     </style>
 </head>
 <body class="font-sans overflow-x-hidden selection:bg-gold selection:text-black">
@@ -163,20 +311,36 @@
     <div id="cursor"></div>
     <div id="cursor-dot"></div>
 
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="#about" onclick="closeMobileMenu()">The Vision</a>
+        <a href="#experience" onclick="closeMobileMenu()">The Aesthetic</a>
+        <a href="#gallery" onclick="closeMobileMenu()">The Gallery</a>
+        <a href="#tiers" onclick="closeMobileMenu()">The Production</a>
+        <a href="mailto:pureeleganceav@gmail.com" onclick="closeMobileMenu()" class="mt-8 text-gold">Connect</a>
+    </div>
+
     <!-- Premium Navigation -->
-    <nav class="fixed w-full z-50 flex justify-between items-center px-12 py-8 transition-all duration-500" id="navbar">
-        <div class="w-56">
+    <nav class="fixed w-full z-50 flex justify-between items-center px-6 md:px-12 py-6 md:py-8 transition-all duration-500" id="navbar">
+        <div class="w-40 md:w-56">
             <img src="assets/logo.png" alt="Pure Elegance Luxury AV Logo" class="w-full brightness-125">
         </div>
         <div class="hidden lg:flex items-center space-x-16 text-[9px] font-header tracking-ultra uppercase">
-            <a href="#about" class="hover:text-gold transition-colors">The Vision</a>
-            <a href="#experience" class="hover:text-gold transition-colors">The Aesthetic</a>
-            <a href="#tiers" class="hover:text-gold transition-colors">The Production</a>
-            <a href="mailto:pureeleganceav@gmail.com" class="relative group px-8 py-4 overflow-hidden border border-white/10">
-                <div class="absolute inset-0 bg-white translate-y-full group-hover:translate-y-0 transition-transform duration-500"></div>
+            <a href="#about" class="hover:text-gold transition-colors duration-300">The Vision</a>
+            <a href="#experience" class="hover:text-gold transition-colors duration-300">The Aesthetic</a>
+            <a href="#gallery" class="hover:text-gold transition-colors duration-300">The Gallery</a>
+            <a href="#tiers" class="hover:text-gold transition-colors duration-300">The Production</a>
+            <a href="mailto:pureeleganceav@gmail.com" class="relative group px-8 py-4 overflow-hidden border border-white/10" id="connect-btn">
+                <div class="absolute inset-0 bg-gold translate-y-full group-hover:translate-y-0 transition-transform duration-500"></div>
                 <span class="relative z-10 text-white group-hover:text-black transition-colors duration-500">Connect</span>
             </a>
         </div>
+        <!-- Hamburger (mobile) -->
+        <button class="lg:hidden hamburger z-[110] relative" id="hamburgerBtn" aria-label="Open navigation menu">
+            <span class="hamburger-line mb-2"></span>
+            <span class="hamburger-line mb-2"></span>
+            <span class="hamburger-line"></span>
+        </button>
     </nav>
 
     <!-- Hero Section -->
@@ -188,40 +352,71 @@
         
         <div class="relative z-20 text-center px-4">
             <span class="block font-header text-[10px] tracking-mega uppercase text-gold mb-8 stagger-item">Establishing the Texas Standard</span>
-            <h1 class="font-header font-bold text-5xl md:text-[9rem] mb-12 tracking-tighter leading-none stagger-item delay-100">
+            <h1 class="font-header font-bold text-4xl md:text-7xl lg:text-[9rem] mb-12 tracking-tighter leading-none stagger-item">
                 ATMOSPHERIC<br><span class="text-outline">ENGINEERING</span>
             </h1>
-            <div class="flex flex-col md:flex-row items-center justify-center gap-12 stagger-item delay-300">
-                <a href="#tiers" class="font-header text-[10px] tracking-ultra border-b border-gold pb-4 hover:text-gold transition-colors">Production Tiers</a>
-                <a href="catalog/catalog.pdf" target="_blank" class="font-header text-[10px] tracking-ultra border-b border-white/20 pb-4 hover:border-gold transition-colors">The Portfolio</a>
+            <p class="font-serif text-sm md:text-lg text-white/40 max-w-xl mx-auto mb-12 stagger-item italic">Concert-grade sound, 4K LED architecture, and intelligent lighting for Texas's most prestigious celebrations.</p>
+            <div class="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-12 stagger-item">
+                <a href="#tiers" class="font-header text-[10px] tracking-ultra border-b border-gold pb-4 hover:text-gold transition-colors duration-300">Production Tiers</a>
+                <a href="catalog/catalog.pdf" target="_blank" class="font-header text-[10px] tracking-ultra border-b border-white/20 pb-4 hover:border-gold hover:text-gold transition-all duration-300">The Portfolio</a>
             </div>
         </div>
 
-        <div class="absolute bottom-12 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center stagger-item delay-700">
+        <div class="absolute bottom-12 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center stagger-item">
             <span class="font-header text-[8px] tracking-ultra uppercase text-white/30 mb-4">Scroll to Explore</span>
             <div class="w-[1px] h-20 bg-gradient-to-b from-gold to-transparent"></div>
         </div>
     </section>
 
+    <!-- Stats Bar -->
+    <section class="py-12 md:py-16 bg-accent shimmer">
+        <div class="container mx-auto px-6 md:px-12">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                <div class="stagger-item">
+                    <span class="block font-serif text-3xl md:text-5xl italic text-gold stat-number" data-target="200">0</span>
+                    <span class="font-header text-[8px] tracking-ultra uppercase text-white/30 mt-2 block">Events Produced</span>
+                </div>
+                <div class="stagger-item">
+                    <span class="block font-serif text-3xl md:text-5xl italic text-gold stat-number" data-target="4">0</span>
+                    <span class="font-header text-[8px] tracking-ultra uppercase text-white/30 mt-2 block">Texas Markets</span>
+                </div>
+                <div class="stagger-item">
+                    <span class="block font-serif text-3xl md:text-5xl italic text-gold">4K</span>
+                    <span class="font-header text-[8px] tracking-ultra uppercase text-white/30 mt-2 block">LED Resolution</span>
+                </div>
+                <div class="stagger-item">
+                    <span class="block font-serif text-3xl md:text-5xl italic text-gold">24/7</span>
+                    <span class="font-header text-[8px] tracking-ultra uppercase text-white/30 mt-2 block">On-Call Support</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- The Vision Section -->
-    <section id="about" class="relative py-64 overflow-hidden">
+    <section id="about" class="relative py-32 md:py-64 overflow-hidden">
         <div class="parallax-text top-1/3 -left-40">MASTERY</div>
-        <div class="container mx-auto px-12">
-            <div class="grid lg:grid-cols-2 gap-32 items-center">
+        <div class="container mx-auto px-6 md:px-12 relative z-10">
+            <div class="grid lg:grid-cols-2 gap-16 md:gap-32 items-center">
                 <div class="relative stagger-item">
-                    <div class="absolute -top-16 -left-16 w-64 h-64 border-l border-t border-gold/20"></div>
+                    <div class="absolute -top-8 md:-top-16 -left-8 md:-left-16 w-32 md:w-64 h-32 md:h-64 border-l border-t border-gold/20"></div>
                     <div class="overflow-hidden">
                         <img src="assets/feature-1.jpg" alt="Luxury Event Production Texas" class="w-full scale-110 hover:scale-100 transition-transform duration-[3s] grayscale hover:grayscale-0">
                     </div>
-                    <div class="absolute -bottom-8 -right-8 bg-gold p-8 hidden md:block">
-                        <span class="font-header text-[10px] text-black tracking-ultra uppercase">Est. 2026</span>
+                    <div class="absolute -bottom-4 md:-bottom-8 -right-4 md:-right-8 bg-gold p-4 md:p-8">
+                        <span class="font-header text-[9px] md:text-[10px] text-black tracking-ultra uppercase">Est. 2026</span>
                     </div>
                 </div>
-                <div class="stagger-item delay-300">
-                    <h2 class="font-header text-[10px] tracking-mega text-gold mb-12 uppercase">Act I: The Vision</h2>
-                    <p class="font-serif text-5xl md:text-7xl leading-[1.1] mb-16 italic">Curating the <span class="gold-gradient">Sublime</span> through technical precision.</p>
-                    <p class="text-white/40 font-light text-xl leading-relaxed max-w-xl mb-12">
-                        Pure Elegance exists at the intersection of high-art and heavy-engineering. We don't merely supply equipment; we architect ephemeral worlds. Serving the elite ballrooms of **Austin, Dallas, Houston, and San Antonio**, we specialize in the impossible.
+                <div class="stagger-item">
+                    <h2 class="font-header text-[10px] tracking-mega text-gold mb-8 md:mb-12 uppercase">Act I: The Vision</h2>
+                    <p class="font-serif text-4xl md:text-5xl lg:text-7xl leading-[1.1] mb-10 md:mb-16 italic">Curating the <span class="gold-gradient">Sublime</span> through technical precision.</p>
+                    <p class="text-white/40 font-light text-base md:text-xl leading-relaxed max-w-xl mb-8">
+                        Pure Elegance exists at the intersection of high-art and heavy-engineering. We don't merely supply equipment — we architect ephemeral worlds that leave lasting impressions.
+                    </p>
+                    <p class="text-white/40 font-light text-base md:text-xl leading-relaxed max-w-xl mb-8">
+                        Serving the elite ballrooms of <strong class="text-white/60">Austin, Dallas, Houston, and San Antonio</strong>, we specialize in the impossible — transforming ordinary venues into cinematic experiences through precision LED architecture, concert-grade audio, and intelligent lighting design.
+                    </p>
+                    <p class="text-white/40 font-light text-base md:text-xl leading-relaxed max-w-xl mb-12">
+                        From intimate luxury Desi weddings to large-scale corporate galas, every production is custom-engineered to exceed expectations.
                     </p>
                     <div class="w-32 h-[1px] bg-gold/50"></div>
                 </div>
@@ -229,147 +424,299 @@
         </div>
     </section>
 
+    <div class="section-divider"></div>
+
     <!-- Mastery Pillars -->
-    <section id="experience" class="py-64 bg-accent relative overflow-hidden">
-        <div class="parallax-text bottom-0 right-0">ESTHETICS</div>
-        <div class="container mx-auto px-12 relative z-10">
-            <div class="max-w-4xl mb-32 stagger-item">
-                <h2 class="font-header text-4xl md:text-7xl tracking-tighter mb-12 uppercase">Technical<br><span class="text-outline">Artistry</span></h2>
-                <p class="text-white/30 text-xs font-header tracking-ultra uppercase leading-loose">Precision Hardware meet Poetic Design.</p>
+    <section id="experience" class="py-32 md:py-64 bg-accent relative overflow-hidden">
+        <div class="parallax-text bottom-0 right-0">AESTHETICS</div>
+        <div class="container mx-auto px-6 md:px-12 relative z-10">
+            <div class="max-w-4xl mb-20 md:mb-32 stagger-item">
+                <h2 class="font-header text-3xl md:text-4xl lg:text-7xl tracking-tighter mb-8 md:mb-12 uppercase">Technical<br><span class="text-outline">Artistry</span></h2>
+                <p class="text-white/30 text-xs font-header tracking-ultra uppercase leading-loose">Precision Hardware Meets Poetic Design.</p>
             </div>
 
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="glass-panel p-16 stagger-item">
-                    <span class="text-gold font-header text-[10px] tracking-ultra mb-12 block">01. CHROMATIC</span>
-                    <h3 class="font-header text-2xl tracking-widest mb-8">LED ARCHITECTURE</h3>
-                    <p class="text-sm text-white/40 font-light leading-relaxed">4K Modular displays with ultra-fine pixel density. Engineered to deliver cinematic clarity in the brightest ballrooms or high-noon Baraats.</p>
+            <div class="grid md:grid-cols-3 gap-6 md:gap-8">
+                <div class="glass-panel p-10 md:p-16 stagger-item">
+                    <span class="text-gold font-header text-[10px] tracking-ultra mb-8 md:mb-12 block">01. CHROMATIC</span>
+                    <h3 class="font-header text-lg md:text-2xl tracking-widest mb-6 md:mb-8">LED ARCHITECTURE</h3>
+                    <p class="text-sm text-white/40 font-light leading-relaxed mb-6">4K modular displays with ultra-fine pixel density. Engineered to deliver cinematic clarity in the brightest ballrooms or high-noon Baraats.</p>
+                    <ul class="text-xs text-white/25 space-y-2 font-light">
+                        <li>• P2.6 & P3.9 panel options</li>
+                        <li>• Modular sizing up to any dimension</li>
+                        <li>• 5,000 nit outdoor brightness</li>
+                    </ul>
                 </div>
-                <div class="glass-panel p-16 stagger-item delay-200">
-                    <span class="text-gold font-header text-[10px] tracking-ultra mb-12 block">02. RESONANCE</span>
-                    <h3 class="font-header text-2xl tracking-widest mb-8">ACOUSTIC DESIGN</h3>
-                    <p class="text-sm text-white/40 font-light leading-relaxed">Concert-grade line-array systems, custom-calibrated for zero harmonic distortion. We treat every room as a sonic sanctuary.</p>
+                <div class="glass-panel p-10 md:p-16 stagger-item">
+                    <span class="text-gold font-header text-[10px] tracking-ultra mb-8 md:mb-12 block">02. RESONANCE</span>
+                    <h3 class="font-header text-lg md:text-2xl tracking-widest mb-6 md:mb-8">ACOUSTIC DESIGN</h3>
+                    <p class="text-sm text-white/40 font-light leading-relaxed mb-6">Concert-grade line-array systems, custom-calibrated for zero harmonic distortion. We treat every room as a sonic sanctuary.</p>
+                    <ul class="text-xs text-white/25 space-y-2 font-light">
+                        <li>• JBL & QSC line arrays</li>
+                        <li>• Wireless microphone systems</li>
+                        <li>• On-site audio engineer</li>
+                    </ul>
                 </div>
-                <div class="glass-panel p-16 stagger-item delay-400">
-                    <span class="text-gold font-header text-[10px] tracking-ultra mb-12 block">03. KINETIC</span>
-                    <h3 class="font-header text-2xl tracking-widest mb-8">INTELLIGENT LIGHT</h3>
-                    <p class="text-sm text-white/40 font-light leading-relaxed">DMX-integrated robotic lighting. From the subtle amber glow of a royal reception to the frenetic energy of a Bollywood premiere.</p>
+                <div class="glass-panel p-10 md:p-16 stagger-item">
+                    <span class="text-gold font-header text-[10px] tracking-ultra mb-8 md:mb-12 block">03. KINETIC</span>
+                    <h3 class="font-header text-lg md:text-2xl tracking-widest mb-6 md:mb-8">INTELLIGENT LIGHT</h3>
+                    <p class="text-sm text-white/40 font-light leading-relaxed mb-6">DMX-integrated robotic lighting. From the subtle amber glow of a royal reception to the frenetic energy of a Bollywood premiere.</p>
+                    <ul class="text-xs text-white/25 space-y-2 font-light">
+                        <li>• Moving head beam & wash fixtures</li>
+                        <li>• Cold spark machines</li>
+                        <li>• Programmable DMX control</li>
+                    </ul>
                 </div>
             </div>
         </div>
     </section>
+
+    <div class="section-divider"></div>
+
+    <!-- Gallery Section (NEW) -->
+    <section id="gallery" class="py-32 md:py-64 bg-dark relative overflow-hidden">
+        <div class="container mx-auto px-6 md:px-12">
+            <div class="text-center mb-20 md:mb-32 stagger-item">
+                <h2 class="font-header text-[10px] tracking-mega text-gold mb-6 md:mb-8 uppercase">Captured Moments</h2>
+                <p class="font-serif text-4xl md:text-5xl lg:text-7xl italic">The <span class="text-outline">Portfolio</span></p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-4 md:gap-6 stagger-item">
+                <div class="gallery-item aspect-[4/3]">
+                    <img src="assets/feature-1.jpg" alt="Pure Elegance LED wall at luxury Desi wedding in Austin TX" class="w-full h-full object-cover">
+                    <div class="gallery-overlay bg-gradient-to-t from-black/80 via-transparent to-transparent">
+                        <div>
+                            <span class="font-header text-[9px] tracking-ultra text-gold uppercase block mb-2">LED Architecture</span>
+                            <span class="text-sm font-light text-white/80">Full immersive LED stage wrap for a luxury wedding celebration</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="gallery-item aspect-[4/3]">
+                    <img src="assets/feature-2.jpg" alt="Pure Elegance concert-grade sound setup for Dallas event" class="w-full h-full object-cover">
+                    <div class="gallery-overlay bg-gradient-to-t from-black/80 via-transparent to-transparent">
+                        <div>
+                            <span class="font-header text-[9px] tracking-ultra text-gold uppercase block mb-2">Full Production</span>
+                            <span class="text-sm font-light text-white/80">Concert-grade audio and lighting integration at a grand ballroom</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-12 md:mt-16 stagger-item">
+                <a href="catalog/catalog.pdf" target="_blank" class="inline-block tier-cta text-white hover:text-black">View Full Portfolio</a>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
 
     <!-- The Process (Act II) -->
-    <section class="py-64 relative bg-dark">
-        <div class="container mx-auto px-12">
-            <div class="text-center mb-40 stagger-item">
-                <h2 class="font-header text-[10px] tracking-mega text-gold mb-8 uppercase">Act II: The Process</h2>
-                <p class="font-serif text-5xl md:text-7xl italic">The Path to <span class="text-outline">Perfection</span></p>
+    <section class="py-32 md:py-64 relative bg-accent">
+        <div class="container mx-auto px-6 md:px-12">
+            <div class="text-center mb-24 md:mb-40 stagger-item">
+                <h2 class="font-header text-[10px] tracking-mega text-gold mb-6 md:mb-8 uppercase">Act II: The Process</h2>
+                <p class="font-serif text-4xl md:text-5xl lg:text-7xl italic">The Path to <span class="text-outline">Perfection</span></p>
             </div>
 
-            <div class="grid md:grid-cols-3 gap-24 relative">
-                <div class="process-line hidden md:block"></div>
+            <div class="grid md:grid-cols-4 gap-12 md:gap-16 relative">
+                <!-- Connecting line (desktop) -->
+                <div class="hidden md:block absolute top-6 left-[12.5%] right-[12.5%] h-[1px] bg-gradient-to-r from-transparent via-gold/30 to-transparent"></div>
+
                 <div class="text-center stagger-item">
-                    <div class="w-12 h-12 bg-gold text-black flex items-center justify-center font-header font-bold mx-auto mb-12 rounded-full">1</div>
-                    <h4 class="font-header text-xs tracking-ultra mb-6">CONSULTATION</h4>
-                    <p class="text-white/30 text-sm font-light italic">Defining the creative DNA of your production.</p>
+                    <div class="w-12 h-12 bg-gold text-black flex items-center justify-center font-header font-bold mx-auto mb-8 md:mb-12 rounded-full pulse-gold relative z-10">1</div>
+                    <h4 class="font-header text-xs tracking-ultra mb-4 md:mb-6">CONSULTATION</h4>
+                    <p class="text-white/30 text-sm font-light italic">We begin with a detailed discovery session to understand your creative vision, venue acoustics, and guest count.</p>
                 </div>
-                <div class="text-center stagger-item delay-200">
-                    <div class="w-12 h-12 bg-gold text-black flex items-center justify-center font-header font-bold mx-auto mb-12 rounded-full">2</div>
-                    <h4 class="font-header text-xs tracking-ultra mb-6">ENGINEERING</h4>
-                    <p class="text-white/30 text-sm font-light italic">CAD design and acoustic mapping for the venue.</p>
+                <div class="text-center stagger-item">
+                    <div class="w-12 h-12 bg-gold text-black flex items-center justify-center font-header font-bold mx-auto mb-8 md:mb-12 rounded-full pulse-gold relative z-10">2</div>
+                    <h4 class="font-header text-xs tracking-ultra mb-4 md:mb-6">DESIGN</h4>
+                    <p class="text-white/30 text-sm font-light italic">Our team creates a custom production plan with CAD layouts, acoustic mapping, and lighting schematics for your venue.</p>
                 </div>
-                <div class="text-center stagger-item delay-400">
-                    <div class="w-12 h-12 bg-gold text-black flex items-center justify-center font-header font-bold mx-auto mb-12 rounded-full">3</div>
-                    <h4 class="font-header text-xs tracking-ultra mb-6">EXECUTION</h4>
-                    <p class="text-white/30 text-sm font-light italic">Flawless deployment by our senior technicians.</p>
+                <div class="text-center stagger-item">
+                    <div class="w-12 h-12 bg-gold text-black flex items-center justify-center font-header font-bold mx-auto mb-8 md:mb-12 rounded-full pulse-gold relative z-10">3</div>
+                    <h4 class="font-header text-xs tracking-ultra mb-4 md:mb-6">ENGINEERING</h4>
+                    <p class="text-white/30 text-sm font-light italic">Equipment is prepped, tested, and transported by our technicians. Load-in typically begins 6–8 hours before your event.</p>
+                </div>
+                <div class="text-center stagger-item">
+                    <div class="w-12 h-12 bg-gold text-black flex items-center justify-center font-header font-bold mx-auto mb-8 md:mb-12 rounded-full pulse-gold relative z-10">4</div>
+                    <h4 class="font-header text-xs tracking-ultra mb-4 md:mb-6">EXECUTION</h4>
+                    <p class="text-white/30 text-sm font-light italic">A senior technician manages the entire production live, ensuring flawless sound, visuals, and lighting throughout.</p>
                 </div>
             </div>
         </div>
     </section>
 
+    <div class="section-divider"></div>
+
     <!-- Tiers Section -->
-    <section id="tiers" class="py-64 relative overflow-hidden">
+    <section id="tiers" class="py-32 md:py-64 relative overflow-hidden bg-dark">
         <div class="parallax-text top-0 -right-20">PRESTIGE</div>
-        <div class="container mx-auto px-12">
-            <div class="flex flex-col md:flex-row justify-between items-end mb-32 stagger-item">
+        <div class="container mx-auto px-6 md:px-12 relative z-10">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-20 md:mb-32 stagger-item">
                 <div>
-                    <h2 class="font-header text-5xl md:text-[8rem] tracking-tighter leading-none mb-4">PRODUCTION</h2>
-                    <h2 class="font-header text-5xl md:text-[8rem] tracking-tighter leading-none text-outline">TIERS</h2>
+                    <h2 class="font-header text-4xl md:text-6xl lg:text-[8rem] tracking-tighter leading-none mb-2 md:mb-4">PRODUCTION</h2>
+                    <h2 class="font-header text-4xl md:text-6xl lg:text-[8rem] tracking-tighter leading-none text-outline">TIERS</h2>
                 </div>
-                <div class="md:w-1/3 mb-8 md:mb-12">
-                    <p class="text-gold font-header text-[10px] tracking-ultra uppercase mb-4 text-right">Scalable Luxury</p>
-                    <p class="text-white/30 text-xs text-right leading-relaxed italic">Engineered for the discerning client who demands no compromise in quality, regardless of scale.</p>
+                <div class="md:w-1/3 mt-8 md:mt-0 md:mb-12">
+                    <p class="text-gold font-header text-[10px] tracking-ultra uppercase mb-4 md:text-right">Scalable Luxury</p>
+                    <p class="text-white/30 text-xs md:text-right leading-relaxed italic">Engineered for the discerning client who demands no compromise in quality, regardless of scale.</p>
                 </div>
             </div>
 
             <div class="grid lg:grid-cols-3 gap-4">
                 <!-- Tier 1 -->
-                <div class="p-16 border border-white/5 stagger-item">
-                    <h4 class="font-header text-[9px] text-gold mb-16 tracking-mega">ELITE SERIES</h4>
-                    <div class="mb-16">
-                        <span class="font-serif text-6xl italic">$3,500</span>
+                <div class="p-10 md:p-16 border border-white/5 stagger-item hover:border-gold/20 transition-colors duration-500">
+                    <h4 class="font-header text-[9px] text-gold mb-12 md:mb-16 tracking-mega">ELITE SERIES</h4>
+                    <div class="mb-12 md:mb-16">
+                        <span class="font-serif text-5xl md:text-6xl italic">$3,500</span>
                         <span class="text-white/10 font-light block mt-4 text-[10px] tracking-ultra uppercase">Boutique Luxury Investment</span>
                     </div>
-                    <ul class="space-y-8 text-[9px] font-header tracking-ultra text-white/40 uppercase mb-20">
-                        <li class="flex items-center gap-4"><div class="w-1 h-1 bg-gold"></div> 10' x 7' 4K LED Canvas</li>
-                        <li class="flex items-center gap-4"><div class="w-1 h-1 bg-gold"></div> High-Fidelity Audio Rig</li>
-                        <li class="flex items-center gap-4"><div class="w-1 h-1 bg-gold"></div> 8 Intelligent Fixtures</li>
+                    <ul class="space-y-6 md:space-y-8 text-[9px] font-header tracking-ultra text-white/40 uppercase mb-16 md:mb-20">
+                        <li class="flex items-center gap-4"><div class="w-1.5 h-1.5 bg-gold rounded-full"></div> 10' x 7' 4K LED Canvas</li>
+                        <li class="flex items-center gap-4"><div class="w-1.5 h-1.5 bg-gold rounded-full"></div> High-Fidelity Audio Rig</li>
+                        <li class="flex items-center gap-4"><div class="w-1.5 h-1.5 bg-gold rounded-full"></div> 8 Intelligent Fixtures</li>
+                        <li class="flex items-center gap-4"><div class="w-1.5 h-1.5 bg-gold rounded-full"></div> Professional Setup & Strike</li>
                     </ul>
+                    <a href="mailto:pureeleganceav@gmail.com?subject=Elite%20Series%20Inquiry" class="tier-cta text-white block text-center">Request Quote</a>
                 </div>
 
                 <!-- Tier 2 (Featured) -->
-                <div class="p-20 bg-white text-black stagger-item delay-200 relative z-10 shadow-[0_0_100px_rgba(197,160,89,0.15)]">
-                    <div class="absolute -top-4 right-12 bg-gold text-black px-6 py-2 text-[8px] font-header font-bold tracking-mega uppercase">The Standard</div>
-                    <h4 class="font-header text-[9px] mb-16 tracking-mega">GRAND SERIES</h4>
-                    <div class="mb-16">
-                        <span class="font-serif text-6xl italic">$7,500</span>
+                <div class="p-12 md:p-20 bg-white text-black stagger-item relative z-10 shadow-[0_0_100px_rgba(197,160,89,0.15)]">
+                    <div class="absolute -top-4 right-8 md:right-12 bg-gold text-black px-6 py-2 text-[8px] font-header font-bold tracking-mega uppercase">The Standard</div>
+                    <h4 class="font-header text-[9px] mb-12 md:mb-16 tracking-mega">GRAND SERIES</h4>
+                    <div class="mb-12 md:mb-16">
+                        <span class="font-serif text-5xl md:text-6xl italic">$7,500</span>
                         <span class="text-black/30 font-light block mt-4 text-[10px] tracking-ultra uppercase">Full Ballroom Production</span>
                     </div>
-                    <ul class="space-y-8 text-[9px] font-header tracking-ultra uppercase mb-20">
-                        <li class="font-bold flex items-center gap-4"><div class="w-1 h-1 bg-black"></div> 16' x 9' LED Master Wall</li>
-                        <li class="font-bold flex items-center gap-4"><div class="w-1 h-1 bg-black"></div> Concert Line-Array Array</li>
-                        <li class="font-bold flex items-center gap-4"><div class="w-1 h-1 bg-black"></div> 12+ Moving Beam Fixtures</li>
-                        <li class="font-bold flex items-center gap-4"><div class="w-1 h-1 bg-black"></div> Cold Sparkular Effects</li>
+                    <ul class="space-y-6 md:space-y-8 text-[9px] font-header tracking-ultra uppercase mb-16 md:mb-20">
+                        <li class="font-bold flex items-center gap-4"><div class="w-1.5 h-1.5 bg-black rounded-full"></div> 16' x 9' LED Master Wall</li>
+                        <li class="font-bold flex items-center gap-4"><div class="w-1.5 h-1.5 bg-black rounded-full"></div> Concert Line-Array System</li>
+                        <li class="font-bold flex items-center gap-4"><div class="w-1.5 h-1.5 bg-black rounded-full"></div> 12+ Moving Beam Fixtures</li>
+                        <li class="font-bold flex items-center gap-4"><div class="w-1.5 h-1.5 bg-black rounded-full"></div> Cold Sparkular Effects</li>
+                        <li class="font-bold flex items-center gap-4"><div class="w-1.5 h-1.5 bg-black rounded-full"></div> On-Site Audio Engineer</li>
                     </ul>
+                    <a href="mailto:pureeleganceav@gmail.com?subject=Grand%20Series%20Inquiry" class="tier-cta tier-cta-featured block text-center">Request Quote</a>
                 </div>
 
                 <!-- Tier 3 -->
-                <div class="p-16 border border-white/5 stagger-item delay-400">
-                    <h4 class="font-header text-[9px] text-gold mb-16 tracking-mega">ROYAL PRODUCTION</h4>
-                    <div class="mb-16">
-                        <span class="font-serif text-6xl italic">$15,000</span>
+                <div class="p-10 md:p-16 border border-white/5 stagger-item hover:border-gold/20 transition-colors duration-500">
+                    <h4 class="font-header text-[9px] text-gold mb-12 md:mb-16 tracking-mega">ROYAL PRODUCTION</h4>
+                    <div class="mb-12 md:mb-16">
+                        <span class="font-serif text-5xl md:text-6xl italic">$15,000</span>
                         <span class="text-white/10 font-light block mt-4 text-[10px] tracking-ultra uppercase">Bespoke Stadium Integration</span>
                     </div>
-                    <ul class="space-y-8 text-[9px] font-header tracking-ultra text-white/40 uppercase mb-20">
-                        <li class="flex items-center gap-4"><div class="w-1 h-1 bg-gold"></div> Immersive Stage Wraps</li>
-                        <li class="flex items-center gap-4"><div class="w-1 h-1 bg-gold"></div> Broadcast IMAG Systems</li>
-                        <li class="flex items-center gap-4"><div class="w-1 h-1 bg-gold"></div> 3D Projection Mapping</li>
-                        <li class="flex items-center gap-4"><div class="w-1 h-1 bg-gold"></div> Full Room Acoustic Eng.</li>
+                    <ul class="space-y-6 md:space-y-8 text-[9px] font-header tracking-ultra text-white/40 uppercase mb-16 md:mb-20">
+                        <li class="flex items-center gap-4"><div class="w-1.5 h-1.5 bg-gold rounded-full"></div> Immersive Stage Wraps</li>
+                        <li class="flex items-center gap-4"><div class="w-1.5 h-1.5 bg-gold rounded-full"></div> Broadcast IMAG Systems</li>
+                        <li class="flex items-center gap-4"><div class="w-1.5 h-1.5 bg-gold rounded-full"></div> 3D Projection Mapping</li>
+                        <li class="flex items-center gap-4"><div class="w-1.5 h-1.5 bg-gold rounded-full"></div> Full Room Acoustic Eng.</li>
+                        <li class="flex items-center gap-4"><div class="w-1.5 h-1.5 bg-gold rounded-full"></div> Dedicated Production Manager</li>
                     </ul>
+                    <a href="mailto:pureeleganceav@gmail.com?subject=Royal%20Production%20Inquiry" class="tier-cta text-white block text-center">Request Quote</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Testimonial Fluff -->
-    <section class="py-64 bg-accent/50 text-center">
-        <div class="container mx-auto px-12 max-w-4xl stagger-item">
-            <span class="font-serif text-8xl text-gold/20 block mb-12">“</span>
-            <p class="font-serif text-3xl md:text-5xl italic leading-relaxed mb-12">"They didn't just provide a screen; they changed the entire atmosphere of the Hilton Ballroom. It felt like a movie set."</p>
-            <span class="font-header text-[10px] tracking-ultra uppercase text-white/50">— Private Client, Austin TX</span>
+    <div class="section-divider"></div>
+
+    <!-- Testimonials (Multiple) -->
+    <section class="py-32 md:py-64 bg-accent/50 text-center relative overflow-hidden">
+        <div class="container mx-auto px-6 md:px-12 max-w-4xl relative" style="min-height: 320px;">
+            <!-- Testimonial 1 -->
+            <div class="testimonial-slide active-testimonial stagger-item" data-testimonial="0">
+                <span class="font-serif text-6xl md:text-8xl text-gold/20 block mb-8 md:mb-12">&ldquo;</span>
+                <p class="font-serif text-2xl md:text-3xl lg:text-5xl italic leading-relaxed mb-8 md:mb-12">"They didn't just provide a screen — they changed the entire atmosphere of the Hilton Ballroom. It felt like a movie set."</p>
+                <span class="font-header text-[10px] tracking-ultra uppercase text-white/50">— Private Client, Austin TX</span>
+            </div>
+            <!-- Testimonial 2 -->
+            <div class="testimonial-slide" data-testimonial="1">
+                <span class="font-serif text-6xl md:text-8xl text-gold/20 block mb-8 md:mb-12">&ldquo;</span>
+                <p class="font-serif text-2xl md:text-3xl lg:text-5xl italic leading-relaxed mb-8 md:mb-12">"Our guests could not stop talking about the LED walls and light show. Pure Elegance made our Sangeet night unforgettable."</p>
+                <span class="font-header text-[10px] tracking-ultra uppercase text-white/50">— Sangeet Celebration, Dallas TX</span>
+            </div>
+            <!-- Testimonial 3 -->
+            <div class="testimonial-slide" data-testimonial="2">
+                <span class="font-serif text-6xl md:text-8xl text-gold/20 block mb-8 md:mb-12">&ldquo;</span>
+                <p class="font-serif text-2xl md:text-3xl lg:text-5xl italic leading-relaxed mb-8 md:mb-12">"From setup to strike, the team was incredibly professional. The sound clarity was on another level — like a private concert."</p>
+                <span class="font-header text-[10px] tracking-ultra uppercase text-white/50">— Corporate Gala, Houston TX</span>
+            </div>
+
+            <!-- Dots navigation -->
+            <div class="absolute -bottom-8 md:bottom-0 left-1/2 -translate-x-1/2 flex gap-3">
+                <button class="w-2 h-2 rounded-full bg-gold testimonial-dot" data-index="0" aria-label="Testimonial 1"></button>
+                <button class="w-2 h-2 rounded-full bg-white/20 testimonial-dot" data-index="1" aria-label="Testimonial 2"></button>
+                <button class="w-2 h-2 rounded-full bg-white/20 testimonial-dot" data-index="2" aria-label="Testimonial 3"></button>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- Why Pure Elegance (NEW) -->
+    <section class="py-32 md:py-48 bg-dark relative">
+        <div class="container mx-auto px-6 md:px-12">
+            <div class="text-center mb-20 md:mb-32 stagger-item">
+                <h2 class="font-header text-[10px] tracking-mega text-gold mb-6 md:mb-8 uppercase">Why Pure Elegance</h2>
+                <p class="font-serif text-4xl md:text-5xl lg:text-6xl italic">Beyond Equipment. <span class="text-outline">Beyond Expectation.</span></p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+                <div class="p-8 md:p-10 border border-white/5 text-center stagger-item hover:border-gold/20 transition-colors duration-500">
+                    <div class="text-gold text-3xl mb-6">⚡</div>
+                    <h4 class="font-header text-xs tracking-ultra mb-4 uppercase">Same-Week Availability</h4>
+                    <p class="text-white/30 text-sm font-light">Last-minute event? We maintain inventory across all four Texas markets for rapid deployment.</p>
+                </div>
+                <div class="p-8 md:p-10 border border-white/5 text-center stagger-item hover:border-gold/20 transition-colors duration-500">
+                    <div class="text-gold text-3xl mb-6">🎛️</div>
+                    <h4 class="font-header text-xs tracking-ultra mb-4 uppercase">In-House Engineers</h4>
+                    <p class="text-white/30 text-sm font-light">Every production is staffed by our own senior technicians — never outsourced, never compromised.</p>
+                </div>
+                <div class="p-8 md:p-10 border border-white/5 text-center stagger-item hover:border-gold/20 transition-colors duration-500">
+                    <div class="text-gold text-3xl mb-6">🎨</div>
+                    <h4 class="font-header text-xs tracking-ultra mb-4 uppercase">Custom Content</h4>
+                    <p class="text-white/30 text-sm font-light">We design bespoke LED wall content — monograms, motion graphics, and live camera feeds — included with every package.</p>
+                </div>
+                <div class="p-8 md:p-10 border border-white/5 text-center stagger-item hover:border-gold/20 transition-colors duration-500">
+                    <div class="text-gold text-3xl mb-6">🤝</div>
+                    <h4 class="font-header text-xs tracking-ultra mb-4 uppercase">Vendor Friendly</h4>
+                    <p class="text-white/30 text-sm font-light">We coordinate seamlessly with your DJ, planner, and photographer to ensure a unified event experience.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section (NEW) -->
+    <section class="py-24 md:py-40 relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-r from-gold-dark/20 via-gold/10 to-gold-dark/20"></div>
+        <div class="container mx-auto px-6 md:px-12 text-center relative z-10 stagger-item">
+            <h2 class="font-header text-3xl md:text-4xl lg:text-6xl tracking-tighter mb-6 md:mb-8 uppercase">Ready to Elevate <br class="hidden md:block"><span class="text-outline">Your Event?</span></h2>
+            <p class="font-serif text-base md:text-xl italic text-white/50 max-w-2xl mx-auto mb-10 md:mb-14">
+                Let us craft an unforgettable atmosphere for your next celebration. Consultations are complimentary.
+            </p>
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-6">
+                <a href="mailto:pureeleganceav@gmail.com" class="relative group px-10 md:px-14 py-4 md:py-5 overflow-hidden bg-gold">
+                    <div class="absolute inset-0 bg-white translate-y-full group-hover:translate-y-0 transition-transform duration-500"></div>
+                    <span class="relative z-10 text-black font-header text-[10px] tracking-ultra uppercase">Get in Touch</span>
+                </a>
+                <a href="https://www.instagram.com/pureelegancelav" target="_blank" class="relative group px-10 md:px-14 py-4 md:py-5 overflow-hidden border border-white/20">
+                    <div class="absolute inset-0 bg-white translate-y-full group-hover:translate-y-0 transition-transform duration-500"></div>
+                    <span class="relative z-10 text-white group-hover:text-black font-header text-[10px] tracking-ultra uppercase transition-colors duration-500">Follow @pureelegancelav</span>
+                </a>
+            </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-black py-40 px-12 border-t border-white/5">
-        <div class="flex flex-col lg:flex-row justify-between items-start">
-            <div class="w-64 mb-16 lg:mb-0">
-                <img src="assets/logo.png" alt="Pure Elegance Production House Texas" class="w-full grayscale opacity-50">
+    <footer class="bg-black py-24 md:py-40 px-6 md:px-12 border-t border-white/5">
+        <div class="flex flex-col lg:flex-row justify-between items-start gap-16">
+            <div class="w-48 md:w-64">
+                <img src="assets/logo.png" alt="Pure Elegance Production House Texas" class="w-full grayscale opacity-50 hover:opacity-100 hover:grayscale-0 transition-all duration-700">
+                <p class="text-white/20 text-xs font-light mt-6 leading-relaxed">Luxury LED wall rentals, concert-grade audio, and intelligent lighting for the Texas Triangle's finest events.</p>
             </div>
-            <div class="grid grid-cols-2 md:grid-cols-3 gap-32">
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-16 md:gap-32">
                 <div>
-                    <h5 class="font-header text-[9px] text-gold mb-12 tracking-mega uppercase">Areas</h5>
-                    <ul class="text-[10px] font-light text-white/30 space-y-6 uppercase tracking-widest">
+                    <h5 class="font-header text-[9px] text-gold mb-8 md:mb-12 tracking-mega uppercase">Service Areas</h5>
+                    <ul class="text-[10px] font-light text-white/30 space-y-4 md:space-y-6 uppercase tracking-widest">
                         <li>Austin</li>
                         <li>Dallas</li>
                         <li>Houston</li>
@@ -377,41 +724,65 @@
                     </ul>
                 </div>
                 <div>
-                    <h5 class="font-header text-[9px] text-gold mb-12 tracking-mega uppercase">Contact</h5>
-                    <ul class="text-[10px] font-light text-white/30 space-y-6 uppercase tracking-widest">
+                    <h5 class="font-header text-[9px] text-gold mb-8 md:mb-12 tracking-mega uppercase">Services</h5>
+                    <ul class="text-[10px] font-light text-white/30 space-y-4 md:space-y-6 uppercase tracking-widest">
+                        <li>LED Wall Rental</li>
+                        <li>Sound Systems</li>
+                        <li>Lighting Design</li>
+                        <li>Full Production</li>
+                    </ul>
+                </div>
+                <div>
+                    <h5 class="font-header text-[9px] text-gold mb-8 md:mb-12 tracking-mega uppercase">Connect</h5>
+                    <ul class="text-[10px] font-light text-white/30 space-y-4 md:space-y-6 uppercase tracking-widest">
                         <li><a href="https://www.instagram.com/pureelegancelav" target="_blank" class="hover:text-gold transition-colors italic">@pureelegancelav</a></li>
-                        <li><a href="mailto:pureeleganceav@gmail.com" class="hover:text-gold transition-colors italic">Email Dispatch</a></li>
-                        <li class="opacity-20">Secure Channel</li>
+                        <li><a href="mailto:pureeleganceav@gmail.com" class="hover:text-gold transition-colors italic">pureeleganceav@gmail.com</a></li>
                     </ul>
                 </div>
             </div>
         </div>
-        <div class="mt-48 pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center text-[8px] font-header tracking-mega uppercase text-white/10">
+        <div class="mt-24 md:mt-48 pt-8 md:pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center text-[8px] font-header tracking-mega uppercase text-white/10">
             <span>&copy; 2026 PURE ELEGANCE PRODUCTION HOUSE</span>
-            <span class="mt-4 md:mt-0 italic">Atmospheric Engineering & Ultra-High Resolution Visuals</span>
+            <span class="mt-4 md:mt-0 italic">Atmospheric Engineering &amp; Ultra-High Resolution Visuals</span>
         </div>
     </footer>
 
     <script>
-        // Custom Cursor Logic
+        // Custom Cursor Logic (Desktop only)
         const cursor = document.getElementById('cursor');
         const cursorDot = document.getElementById('cursor-dot');
-        document.addEventListener('mousemove', (e) => {
-            cursor.style.left = e.clientX + 'px';
-            cursor.style.top = e.clientY + 'px';
-            cursorDot.style.left = e.clientX + 'px';
-            cursorDot.style.top = e.clientY + 'px';
-        });
+        if (window.matchMedia('(pointer: fine)').matches) {
+            document.addEventListener('mousemove', (e) => {
+                cursor.style.left = e.clientX + 'px';
+                cursor.style.top = e.clientY + 'px';
+                cursorDot.style.left = e.clientX + 'px';
+                cursorDot.style.top = e.clientY + 'px';
+            });
 
-        document.querySelectorAll('a, button').forEach(el => {
-            el.addEventListener('mouseenter', () => {
-                cursor.style.transform = 'translate(-50%, -50%) scale(2)';
-                cursor.style.background = 'rgba(197, 160, 89, 0.1)';
+            document.querySelectorAll('a, button').forEach(el => {
+                el.addEventListener('mouseenter', () => {
+                    cursor.style.transform = 'translate(-50%, -50%) scale(2)';
+                    cursor.style.background = 'rgba(197, 160, 89, 0.1)';
+                });
+                el.addEventListener('mouseleave', () => {
+                    cursor.style.transform = 'translate(-50%, -50%) scale(1)';
+                    cursor.style.background = 'transparent';
+                });
             });
-            el.addEventListener('mouseleave', () => {
-                cursor.style.transform = 'translate(-50%, -50%) scale(1)';
-                cursor.style.background = 'transparent';
-            });
+        }
+
+        // Mobile Menu
+        const hamburger = document.getElementById('hamburgerBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        function closeMobileMenu() {
+            mobileMenu.classList.remove('open');
+            hamburger.classList.remove('active');
+        }
+
+        hamburger.addEventListener('click', () => {
+            mobileMenu.classList.toggle('open');
+            hamburger.classList.toggle('active');
         });
 
         // Reveal on scroll
@@ -431,13 +802,63 @@
         window.addEventListener('scroll', () => {
             const nav = document.getElementById('navbar');
             if (window.scrollY > 100) {
-                nav.classList.add('bg-black/95', 'py-6', 'backdrop-blur-xl', 'border-b', 'border-white/5');
-                nav.classList.remove('py-8');
+                nav.classList.add('bg-black/95', 'py-4', 'backdrop-blur-xl', 'border-b', 'border-white/5');
+                nav.classList.remove('py-6', 'md:py-8');
             } else {
-                nav.classList.remove('bg-black/95', 'py-6', 'backdrop-blur-xl', 'border-b', 'border-white/5');
-                nav.classList.add('py-8');
+                nav.classList.remove('bg-black/95', 'py-4', 'backdrop-blur-xl', 'border-b', 'border-white/5');
+                nav.classList.add('py-6');
             }
         });
+
+        // Stat counter animation
+        const animateCounters = () => {
+            document.querySelectorAll('.stat-number[data-target]').forEach(el => {
+                const target = parseInt(el.getAttribute('data-target'));
+                const rect = el.getBoundingClientRect();
+                if (rect.top < window.innerHeight && !el.dataset.animated) {
+                    el.dataset.animated = 'true';
+                    let current = 0;
+                    const increment = target / 60;
+                    const timer = setInterval(() => {
+                        current += increment;
+                        if (current >= target) {
+                            el.textContent = target + '+';
+                            clearInterval(timer);
+                        } else {
+                            el.textContent = Math.floor(current);
+                        }
+                    }, 30);
+                }
+            });
+        };
+        window.addEventListener('scroll', animateCounters);
+        animateCounters();
+
+        // Testimonial carousel
+        let currentTestimonial = 0;
+        const testimonials = document.querySelectorAll('.testimonial-slide');
+        const dots = document.querySelectorAll('.testimonial-dot');
+        const totalTestimonials = testimonials.length;
+
+        function showTestimonial(index) {
+            testimonials.forEach(t => t.classList.remove('active-testimonial'));
+            dots.forEach(d => { d.classList.remove('bg-gold'); d.classList.add('bg-white/20'); });
+            testimonials[index].classList.add('active-testimonial');
+            dots[index].classList.remove('bg-white/20');
+            dots[index].classList.add('bg-gold');
+            currentTestimonial = index;
+        }
+
+        dots.forEach(dot => {
+            dot.addEventListener('click', () => {
+                showTestimonial(parseInt(dot.getAttribute('data-index')));
+            });
+        });
+
+        // Auto-rotate testimonials
+        setInterval(() => {
+            showTestimonial((currentTestimonial + 1) % totalTestimonials);
+        }, 6000);
     </script>
 </body>
 </html>
