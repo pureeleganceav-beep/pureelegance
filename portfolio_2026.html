@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Imperial Portfolio 2026 | Pure Elegance Lighting Audio & Visual</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tenor+Sans&family=Syncopate:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --black: #0a0a0a;
+            --gold: #c5a059;
+            --white: #f5f5f5;
+            --accent: #1a1a1a;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            background-color: var(--black);
+            color: var(--white);
+            font-family: 'Tenor Sans', serif;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        h1, h2, .syncopate {
+            font-family: 'Syncopate', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+        }
+
+        /* Hero Section */
+        header {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('assets/feature-1.jpg');
+            background-size: cover;
+            background-position: center;
+            border-bottom: 1px solid var(--gold);
+        }
+
+        header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+            color: var(--gold);
+        }
+
+        header p {
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+            opacity: 0.8;
+        }
+
+        /* Section Styling */
+        section {
+            padding: 100px 10%;
+            border-bottom: 1px solid var(--accent);
+        }
+
+        .section-title {
+            color: var(--gold);
+            margin-bottom: 50px;
+            font-size: 2rem;
+            text-align: center;
+        }
+
+        /* Tiers Grid */
+        .tier-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .tier-card {
+            background-color: var(--accent);
+            padding: 40px;
+            border: 1px solid #333;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .tier-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--gold);
+        }
+
+        .tier-name {
+            font-family: 'Syncopate', sans-serif;
+            font-weight: 700;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--gold);
+        }
+
+        .tier-price {
+            font-size: 0.9rem;
+            margin-bottom: 30px;
+            color: #888;
+        }
+
+        .tier-specs {
+            list-style: none;
+            padding: 0;
+            line-height: 2;
+        }
+
+        .tier-specs li::before {
+            content: "•";
+            color: var(--gold);
+            display: inline-block; 
+            width: 1em;
+            margin-left: -1em;
+        }
+
+        /* Contact Section */
+        .cta {
+            text-align: center;
+            background-color: var(--black);
+            padding: 100px 10%;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 15px 40px;
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            margin-top: 30px;
+        }
+
+        .btn:hover {
+            background-color: var(--gold);
+            color: var(--black);
+        }
+
+        /* Tech Standards */
+        .tech-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 50px;
+            justify-content: center;
+        }
+
+        .tech-item {
+            flex: 1;
+            min-width: 250px;
+            text-align: center;
+        }
+
+        .tech-item h3 {
+            color: var(--gold);
+            margin-bottom: 15px;
+        }
+
+        footer {
+            padding: 40px;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>PURE ELEGANCE</h1>
+        <p>Lighting Audio and Visual</p>
+        <p>2026 Imperial Portfolio</p>
+    </header>
+
+    <section id="vision">
+        <h2 class="section-title">Atmospheric Engineering</h2>
+        <p style="text-align: center; max-width: 800px; margin: 0 auto; line-height: 1.8; font-size: 1.1rem;">
+            Most companies sell equipment packages. We engineer environments. Pure Elegance defines the new standard of high-resolution AV production for the Texas Triangle. Using cinema-grade LED architecture and immersive acoustic design, we transform ballrooms into living cinematic experiences.
+        </p>
+    </section>
+
+    <section id="tech">
+        <h2 class="section-title">2026 Technical Standards</h2>
+        <div class="tech-grid">
+            <div class="tech-item">
+                <h3>Cinema-Grade LED</h3>
+                <p>Moving beyond standard P3.9. We now standardize on **P1.9 - P2.6** for ultra-sharp, grain-free visuals that look flawless in 4K photography and social media.</p>
+            </div>
+            <div class="tech-item">
+                <h3>Brompton G1 Processing</h3>
+                <p>The global gold standard in color processing. 10-bit HDR depth ensures your wedding colors are perfectly reproduced with total precision.</p>
+            </div>
+            <div class="tech-item">
+                <h3>Line-Array Immersion</h3>
+                <p>Concert-grade sound reinforcement designed for the specific acoustics of prestigious ballrooms. No dead spots, just crystal-clear fidelity.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="tiers">
+        <h2 class="section-title">The 2026 Series</h2>
+        <div class="tier-container">
+            <div class="tier-card">
+                <div class="tier-name">Elite Series</div>
+                <div class="tier-price">Starting at $5,500</div>
+                <ul class="tier-specs">
+                    <li>12' x 8' High-Res P2.5 Centerpiece</li>
+                    <li>Precision Column Array Audio</li>
+                    <li>8 Intelligent Hybrid Fixtures</li>
+                    <li>Minimalist "Floating Screen" Aesthetic</li>
+                </ul>
+            </div>
+            <div class="tier-card">
+                <div class="tier-name">Grand Series</div>
+                <div class="tier-price">Starting at $12,000</div>
+                <ul class="tier-specs">
+                    <li>24' x 10' Panoramic LED Architecture</li>
+                    <li>Full Line-Array Sound Reinforcement</li>
+                    <li>16+ Moving Head Intelligent Fixtures</li>
+                    <li>DMX Atmospheric Effects (Cold Sparks)</li>
+                </ul>
+            </div>
+            <div class="tier-card">
+                <div class="tier-name">Royal Production</div>
+                <div class="tier-price">Starting at $25,000</div>
+                <ul class="tier-specs">
+                    <li>360° Immersive LED Stage Wrap</li>
+                    <li>1.9mm Pixel Pitch Ultra-Master Wall</li>
+                    <li>Full-Venue 3D Soundscape Engineering</li>
+                    <li>Multi-cam Cinema Production Team</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <div class="cta">
+        <h2 class="syncopate">Elevate Your Standard</h2>
+        <p>Pure Elegance is currently accepting preferred vendor status applications for the 2026:2027 season.</p>
+        <a href="mailto:lakha.singh@pureelegancelav.com" class="btn">Request Technical Walkthrough</a>
+    </div>
+
+    <footer>
+        &copy; 2026 Pure Elegance Lighting Audio & Visual | Texas Triangle
+    </footer>
+
+</body>
+</html>
