@@ -328,18 +328,39 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            transition: opacity 0.8s ease-in-out, visibility 0.8s step-end, transform 0.8s ease-in-out;
+            transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
             z-index: 0;
-            transform: translateY(20px);
+            transform: scale(0.95) translateY(30px);
+            pointer-events: none;
         }
 
         .testimonial-slide.active-testimonial {
             opacity: 1;
             visibility: visible;
             z-index: 10;
-            transform: translateY(0);
-            transition: opacity 0.8s ease-in-out, visibility 0s step-start, transform 0.8s ease-in-out;
+            transform: scale(1) translateY(0);
+            pointer-events: auto;
         }
+
+        .testimonial-container {
+            border: 1px solid rgba(197, 160, 89, 0.1);
+            background: linear-gradient(145deg, rgba(10, 10, 10, 0.4) 0%, rgba(20, 20, 20, 0.2) 100%);
+            backdrop-filter: blur(10px);
+            padding: 80px 40px;
+            position: relative;
+        }
+
+        .testimonial-container::before,
+        .testimonial-container::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border: 1px solid var(--gold);
+        }
+
+        .testimonial-container::before { top: -1px; left: -1px; border-right: 0; border-bottom: 0; }
+        .testimonial-container::after { bottom: -1px; right: -1px; border-left: 0; border-top: 0; }
 
         /* Mobile menu overlay */
         .mobile-menu {
@@ -869,44 +890,52 @@
     <div class="section-divider"></div>
 
     <!-- Testimonials (Multiple) -->
-    <section class="py-32 md:py-64 bg-accent/50 text-center relative overflow-hidden">
-        <div class="container mx-auto px-6 md:px-12 max-w-4xl relative" style="min-height: 320px;">
-            <!-- Testimonial 1 -->
-            <div class="testimonial-slide active-testimonial stagger-item" data-testimonial="0">
-                <span class="font-serif text-6xl md:text-8xl text-gold/20 block mb-8 md:mb-12">&ldquo;</span>
-                <p class="font-serif text-2xl md:text-3xl lg:text-5xl italic leading-relaxed mb-8 md:mb-12">"They didn't
-                    just provide a screen — they changed the entire atmosphere of the Hilton Ballroom. It felt like a
-                    movie set."</p>
-                <span class="font-header text-[10px] tracking-ultra uppercase text-white/50">— Private Client, Austin
-                    TX</span>
-            </div>
-            <!-- Testimonial 2 -->
-            <div class="testimonial-slide" data-testimonial="1">
-                <span class="font-serif text-6xl md:text-8xl text-gold/20 block mb-8 md:mb-12">&ldquo;</span>
-                <p class="font-serif text-2xl md:text-3xl lg:text-5xl italic leading-relaxed mb-8 md:mb-12">"Our guests
-                    could not stop talking about the LED walls and light show. Pure Elegance made our Sangeet night
-                    unforgettable."</p>
-                <span class="font-header text-[10px] tracking-ultra uppercase text-white/50">— Sangeet Celebration,
-                    Dallas TX</span>
-            </div>
-            <!-- Testimonial 3 -->
-            <div class="testimonial-slide" data-testimonial="2">
-                <span class="font-serif text-6xl md:text-8xl text-gold/20 block mb-8 md:mb-12">&ldquo;</span>
-                <p class="font-serif text-2xl md:text-3xl lg:text-5xl italic leading-relaxed mb-8 md:mb-12">"From setup
-                    to strike, the team was incredibly professional. The sound clarity was on another level — like a
-                    private concert."</p>
-                <span class="font-header text-[10px] tracking-ultra uppercase text-white/50">— Corporate Gala, Houston
-                    TX</span>
-            </div>
+    <section class="py-32 md:py-64 bg-dark relative overflow-hidden">
+        <div class="parallax-text top-1/2 left-0 -translate-y-1/2">LEGACY</div>
+        <div class="container mx-auto px-6 md:px-12 max-w-5xl relative z-10">
+            <div class="testimonial-container stagger-item">
+                <div class="relative" style="min-height: 400px;">
+                    <!-- Testimonial 1 -->
+                    <div class="testimonial-slide active-testimonial" data-testimonial="0">
+                        <div class="w-12 h-[1px] bg-gold mb-12"></div>
+                        <p class="font-serif text-2xl md:text-4xl lg:text-5xl italic leading-tight mb-12 max-w-3xl">
+                            "They didn't just provide a screen — they changed the entire atmosphere of the Hilton Ballroom. It felt like a movie set."
+                        </p>
+                        <div class="flex flex-col items-center">
+                            <span class="font-header text-[10px] tracking-mega uppercase text-gold mb-2">Private Client</span>
+                            <span class="font-header text-[8px] tracking-ultra uppercase text-white/30 italic">Austin, Texas</span>
+                        </div>
+                    </div>
+                    <!-- Testimonial 2 -->
+                    <div class="testimonial-slide" data-testimonial="1">
+                        <div class="w-12 h-[1px] bg-gold mb-12"></div>
+                        <p class="font-serif text-2xl md:text-4xl lg:text-5xl italic leading-tight mb-12 max-w-3xl">
+                            "Our guests could not stop talking about the LED walls and light show. Pure Elegance made our Sangeet night unforgettable."
+                        </p>
+                        <div class="flex flex-col items-center">
+                            <span class="font-header text-[10px] tracking-mega uppercase text-gold mb-2">Sangeet Celebration</span>
+                            <span class="font-header text-[8px] tracking-ultra uppercase text-white/30 italic">Dallas, Texas</span>
+                        </div>
+                    </div>
+                    <!-- Testimonial 3 -->
+                    <div class="testimonial-slide" data-testimonial="2">
+                        <div class="w-12 h-[1px] bg-gold mb-12"></div>
+                        <p class="font-serif text-2xl md:text-4xl lg:text-5xl italic leading-tight mb-12 max-w-3xl">
+                            "From setup to strike, the team was incredibly professional. The sound clarity was on another level — like a private concert."
+                        </p>
+                        <div class="flex flex-col items-center">
+                            <span class="font-header text-[10px] tracking-mega uppercase text-gold mb-2">Corporate Gala</span>
+                            <span class="font-header text-[8px] tracking-ultra uppercase text-white/30 italic">Houston, Texas</span>
+                        </div>
+                    </div>
+                </div>
 
-            <!-- Dots navigation -->
-            <div class="absolute -bottom-8 md:bottom-0 left-1/2 -translate-x-1/2 flex gap-3">
-                <button class="w-2 h-2 rounded-full bg-gold testimonial-dot" data-index="0"
-                    aria-label="Testimonial 1"></button>
-                <button class="w-2 h-2 rounded-full bg-white/20 testimonial-dot" data-index="1"
-                    aria-label="Testimonial 2"></button>
-                <button class="w-2 h-2 rounded-full bg-white/20 testimonial-dot" data-index="2"
-                    aria-label="Testimonial 3"></button>
+                <!-- Dots navigation -->
+                <div class="flex justify-center gap-6 mt-16">
+                    <button class="w-8 h-[1px] bg-gold testimonial-dot" data-index="0" aria-label="Slide 1"></button>
+                    <button class="w-8 h-[1px] bg-white/10 testimonial-dot" data-index="1" aria-label="Slide 2"></button>
+                    <button class="w-8 h-[1px] bg-white/10 testimonial-dot" data-index="2" aria-label="Slide 3"></button>
+                </div>
             </div>
         </div>
     </section>
@@ -1177,9 +1206,9 @@
 
         function showTestimonial(index) {
             testimonials.forEach(t => t.classList.remove('active-testimonial'));
-            dots.forEach(d => { d.classList.remove('bg-gold'); d.classList.add('bg-white/20'); });
+            dots.forEach(d => { d.classList.remove('bg-gold'); d.classList.add('bg-white/10'); });
             testimonials[index].classList.add('active-testimonial');
-            dots[index].classList.remove('bg-white/20');
+            dots[index].classList.remove('bg-white/10');
             dots[index].classList.add('bg-gold');
             currentTestimonial = index;
         }
