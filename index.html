@@ -321,17 +321,21 @@
         /* Testimonial carousel */
         .testimonial-slide {
             opacity: 0;
+            visibility: hidden;
             position: absolute;
             inset: 0;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            transition: opacity 0.8s ease;
+            transition: opacity 0.8s ease, visibility 0.8s ease;
+            z-index: 0;
         }
 
         .testimonial-slide.active-testimonial {
             opacity: 1;
+            visibility: visible;
+            z-index: 10;
         }
 
         /* Mobile menu overlay */
