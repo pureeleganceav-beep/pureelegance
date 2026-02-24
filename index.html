@@ -328,14 +328,17 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            transition: opacity 0.8s ease, visibility 0.8s ease;
+            transition: opacity 0.8s ease-in-out, visibility 0.8s step-end, transform 0.8s ease-in-out;
             z-index: 0;
+            transform: translateY(20px);
         }
 
         .testimonial-slide.active-testimonial {
             opacity: 1;
             visibility: visible;
             z-index: 10;
+            transform: translateY(0);
+            transition: opacity 0.8s ease-in-out, visibility 0s step-start, transform 0.8s ease-in-out;
         }
 
         /* Mobile menu overlay */
