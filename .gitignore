@@ -1,3 +1,4 @@
 videos/
 content/
 .DS_Store
+.vercel
